@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				text-decoration: none;
+				list-style: none;
+				margin:0;
+				padding: 0;
+			}
+			#div1 {
+				width:2000px;
+				height: 300px;
+				background: pink;
+			}
+			#div1 ul{
+				position: relative;
+				width:100%;
+				height: 100%;
+			}
+			#div1 ul li {
+				display: inline-block;
+				list-style: none;
+				width:10%;
+				height: 100%;
+			}
+			#div1 ul li img{
+				width:100%;
+				height: 100%;
+			}
+			.sig{
+				position:static;
+				display: inline-block;
+				top:0;
+				font-size: 30px;
+				line-height: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1">
+			<ul>
+				<li>
+					<img id="img0" src="">
+				</li>
+				<li>
+					<img id="img1" src="">
+				</li>
+				<div class="sig">:</div>
+				<li>
+					<img id="img2" src="">
+				</li>
+				<li>
+					<img id="img3" src="">
+				</li>
+				<div class="sig">:</div>
+				<li>
+					<img id="img4" src="">
+				</li>
+				<li>
+					<img id="img5" src="">
+				</li>
+				<div class="sig">:</div>
+				<li>
+					<img id="img6" src="">
+				</li>
+				<li>
+					<img id="img7" src="">
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script>
+
+		function intval(years,months,days,hours,minutes,seconds){
+			var div1=document.getElementById("div1");
+			var img0=document.getElementById("img0");
+			var img1=document.getElementById("img1");
+			var img2=document.getElementById("img2");
+			var img3=document.getElementById("img3");
+			var img4=document.getElementById("img4");
+			var img5=document.getElementById("img5");
+			var img6=document.getElementById("img6");
+			var img7=document.getElementById("img7");
+			
+			var now=new Date();
+			var stop=new Date(years,months,days,hours,minutes,seconds);
+			var time=(stop.getTime()-now.getTime())>0?(stop.getTime()-now.getTime()):0;
+			var leftSeconds=parseInt(time/1000);
+			var leftDay=Math.floor(leftSeconds/(24*60*60));
+			var leftHour=Math.floor((leftSeconds%(24*60*60))/(60*60));
+			var leftMinute=Math.floor((leftSeconds%(24*60*60))%(60*60)/60);
+			var leftSecond=Math.floor((leftSeconds%(24*60*60))%(60*60)%60);
+			var timeArr=['img/0.jpg','img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg','img/5.jpg',
+			'img/6.jpg','img/7.jpg','img/8.jpg','img/9.jpg'];
+			
+			var ten=function(num){
+				if(num<10){
+					return num='0'+num;
+				}else{
+					return num;
+				}
+			};
+			
+			var changeImg=function(num,grade){
+				num=num.toString();
+				if(grade==0){
+					var num=timeArr[num[0]];
+				}else{
+					var num=timeArr[num[1]];
+				}
+				return num;
+			};
+
+			img0.src=changeImg(ten(leftDay),0);
+			img1.src=changeImg(ten(leftDay));
+			img2.src=changeImg(ten(leftHour),0);
+			img3.src=changeImg(ten(leftHour));	
+			img4.src=changeImg(ten(leftMinute),0);
+			img5.src=changeImg(ten(leftMinute));
+			img6.src=changeImg(ten(leftSecond),0);
+			img7.src=changeImg(ten(leftSecond));
+		};
+
+		setInterval(function(){
+			intval(2017,2,4,19,55,55);
+		},1000);
+	</script>
+</html>
